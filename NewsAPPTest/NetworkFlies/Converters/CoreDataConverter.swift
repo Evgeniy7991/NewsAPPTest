@@ -21,10 +21,8 @@ struct CoreDataConverter {
                 guard let newValue = value as? MetaMediaCoreData else { return nil }
                 array2.append(newValue)
             }
-            
             array.append(newItem)
         }
-        
         return (article, array, array2)
     }
 }

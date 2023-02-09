@@ -7,14 +7,7 @@ class MostEmailedTableCell: UITableViewCell {
     @IBOutlet weak var mainImageView: UIImageView!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var desriptionView: UIView!
-    
     static let identifire = "MostEmailedTableCell"
-    
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
     
     func configureElements(data: ResultData?) {
         

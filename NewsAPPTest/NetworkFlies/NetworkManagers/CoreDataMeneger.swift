@@ -3,8 +3,8 @@ import CoreData
 
 // MARK: - Core Data stack
 class CoreDataManager{
-    var fetchResultController: NSFetchedResultsController<ResultsCoreData>!
     
+    var fetchResultController: NSFetchedResultsController<ResultsCoreData>!
     static let shared = CoreDataManager()
     private init () {}
     
@@ -59,7 +59,6 @@ class CoreDataManager{
             try fetchResultController.performFetch()
         } catch let error {
             print(error)}
-        
     }
     
     func createUser(resultModel: ResultData, completion: @escaping()->()) {
@@ -96,7 +95,6 @@ class CoreDataManager{
                 mediaCoreData.addToMetaMediaCoreData(metaMediaCoreData)
             }
         }
-        print(" AAAAAAAAAHJKGJHFHJDFRGRSDFAFFUIHLOIHUKUHTDSRDYHOJOIYGYDETRSYTTGIHOI \(article)")
         completion()
     }
 }

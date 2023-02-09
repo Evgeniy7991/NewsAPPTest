@@ -9,11 +9,6 @@ class ChosenTableCell: UITableViewCell {
     
     static let identifire = "ChosenTableCell"
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-      
-    }
-    
     func configureLabel( titleText: String, dataText: String ) {
         
         titleLabel.text = titleText
