@@ -6,9 +6,10 @@ class MostPopularSharedVC: UIViewController {
     @IBOutlet weak var popularSharedTableView: UITableView!
     
     //MARK: - let/var
-    var popularSharedArray = [ResultData]()
+    
     let requestManager = RequsetManager.shared
     let coreDataManager = CoreDataManager.shared
+    var articleData = ArticleData()
     
     //MARK: - UIViewController Lifecycle
     override func viewDidLoad() {
@@ -20,9 +21,9 @@ class MostPopularSharedVC: UIViewController {
         super.viewWillAppear(animated)
         self.navigationController?.tabBarController?.tabBar.isHidden = false
         
-        requestManager.sendEmailedRequest(url: requestManager.sharedURL, completionSuccses: { [weak self ] results in
+        requestManager.sendEmailedRequest(url: requestManager.sharedURL, completionSuccses: { [weak self]  article  in
             guard let self else { return }
-            self.popularSharedArray = results
+            self.articleData = article
             self.popularSharedTableView.reloadData()
         }, completionFailure: nil)
     }
@@ -49,33 +50,33 @@ extension MostPopularSharedVC: UITableViewDataSource {
         return 250
     }
     
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return popularSharedArray.count
+        guard let results = articleData.results else { return 0 }
+        return results.count
     }
-    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: MostSharedTableCell.identifire, for: indexPath) as? MostSharedTableCell else { return UITableViewCell() }
         
-        let row = popularSharedArray[indexPath.row]
-        cell.configureElements(data: row)
+        guard let results = articleData.results else { return UITableViewCell() }
+        cell.configureElements(data: results[indexPath.row])
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let row = popularSharedArray[indexPath.row]
-        pushDetailVC(result: row)
+        guard let results = articleData.results else { return }
+        pushDetailVC(result: results[indexPath.row])
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
         let swipeFavourite = UIContextualAction(style: .destructive, title: "Save") { [weak self] (action, view, completion) in
-            guard let self else { return }
             
-            let row = self.popularSharedArray[indexPath.row]
-            self.coreDataManager.createUser(resultModel: row) {
+            guard let self else { return }
+            guard let results = self.articleData.results else { return }
+            
+            self.coreDataManager.createArticle(resultModel: results[indexPath.row]) {
                 self.coreDataManager.saveContext()
                 completion(true)
             }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3E5C33372994E1FE00A95322 /* PublicFuncs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5C33362994E1FE00A95322 /* PublicFuncs.swift */; };
 		3E91B53D29931FB800052171 /* ChosenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E91B53C29931FB800052171 /* ChosenVC.swift */; };
 		3E91B53F29931FDB00052171 /* ChosenTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E91B53E29931FDB00052171 /* ChosenTableCell.swift */; };
 		3E91B5442993265D00052171 /* DetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E91B5432993265D00052171 /* DetailVC.swift */; };
@@ -38,6 +39,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3E5C33362994E1FE00A95322 /* PublicFuncs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicFuncs.swift; sourceTree = "<group>"; };
 		3E91B53C29931FB800052171 /* ChosenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChosenVC.swift; sourceTree = "<group>"; };
 		3E91B53E29931FDB00052171 /* ChosenTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChosenTableCell.swift; sourceTree = "<group>"; };
 		3E91B5432993265D00052171 /* DetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailVC.swift; sourceTree = "<group>"; };
@@ -150,6 +152,7 @@
 		3E9346A32992D44C00D10A97 /* NewsAPPTest */ = {
 			isa = PBXGroup;
 			children = (
+				3E5C33362994E1FE00A95322 /* PublicFuncs.swift */,
 				3E91B545299327FE00052171 /* Extentions */,
 				3E9346BC2992D4DE00D10A97 /* FilesAPP */,
 				3E91B541299325C500052171 /* Views */,
@@ -380,6 +383,7 @@
 				3E9346EC2992DD1100D10A97 /* MostSharedTableCell.swift in Sources */,
 				3E91B53F29931FDB00052171 /* ChosenTableCell.swift in Sources */,
 				3E9346DE2992D86B00D10A97 /* ResultsCoreData+CoreDataProperties.swift in Sources */,
+				3E5C33372994E1FE00A95322 /* PublicFuncs.swift in Sources */,
 				3E9346E22992D86B00D10A97 /* MediaCoreData+CoreDataProperties.swift in Sources */,
 				3E9346AF2992D44C00D10A97 /* NewsAPPTest.xcdatamodeld in Sources */,
 				3E9346C52992D58B00D10A97 /* CoreDataConverter.swift in Sources */,

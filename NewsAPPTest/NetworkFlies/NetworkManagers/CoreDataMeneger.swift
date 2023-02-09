@@ -2,7 +2,7 @@ import Foundation
 import CoreData
 
 // MARK: - Core Data stack
-class CoreDataManager{
+class CoreDataManager {
     
     var fetchResultController: NSFetchedResultsController<ResultsCoreData>!
     static let shared = CoreDataManager()
@@ -61,7 +61,7 @@ class CoreDataManager{
             print(error)}
     }
     
-    func createUser(resultModel: ResultData, completion: @escaping()->()) {
+    func createArticle(resultModel: ResultData, completion: @escaping()->()) {
         
         let article = ResultsCoreData(context: persistentContainer.viewContext)
         article.uri = resultModel.uri

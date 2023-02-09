@@ -6,17 +6,17 @@ class MostPopularEmailedVC: UIViewController {
     @IBOutlet weak var mostPopularTableView: UITableView!
     
     //MARK: - let/var
-    var popularEmailedArray = [ResultData]()
     let requestManager = RequsetManager.shared
     let coreDataManager = CoreDataManager.shared
+    var articleData = ArticleData()
     
     //MARK: - UIViewController Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        requestManager.sendEmailedRequest(url: requestManager.emailedURL, completionSuccses: { [ weak self] results in
+        requestManager.sendEmailedRequest(url: requestManager.emailedURL, completionSuccses: { [weak self]  articleData  in
             guard let self else { return }
-            self.popularEmailedArray = results
+            self.articleData = articleData
             self.mostPopularTableView.reloadData()
         }, completionFailure: nil)
     }
@@ -47,31 +47,34 @@ extension MostPopularEmailedVC: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return popularEmailedArray.count
+        
+        guard let results = articleData.results else { return 0 }
+        return results.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         guard let cell = tableView.dequeueReusableCell(withIdentifier: MostEmailedTableCell.identifire, for: indexPath) as? MostEmailedTableCell else { return UITableViewCell() }
+        guard let results = self.articleData.results else { return UITableViewCell() }
         
-        let row = popularEmailedArray[indexPath.row]
-        cell.configureElements(data: row)
-        
+        cell.configureElements(data: results[indexPath.row])
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let dataRow = popularEmailedArray[indexPath.row]
-        pushDetailVC(result: dataRow)
+        guard let results = self.articleData.results else { return }
+        pushDetailVC(result: results[indexPath.row])
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
         let swipeFavourite = UIContextualAction(style: .destructive, title: "Save") { [weak self] (action, view, completion) in
-            guard let self else { return }
             
-            let dataRow = self.popularEmailedArray[indexPath.row]
-            self.coreDataManager.createUser(resultModel: dataRow) {
+            guard let self else { return }
+            guard let results = self.articleData.results else { return }
+        
+            self.coreDataManager.createArticle(resultModel: results[indexPath.row]) {
                 self.coreDataManager.saveContext()
                 completion(true)
             }

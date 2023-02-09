@@ -6,17 +6,18 @@ class MostPopularViewedVC: UIViewController {
     @IBOutlet weak var mostViewedTableView: UITableView!
     
     //MARK: - let/var
-    var popularViewedArray = [ResultData]()
+    
     let requestManager = RequsetManager.shared
     let coreDataManager = CoreDataManager.shared
+    var articleData = ArticleData()
     
     //MARK: - UIViewController Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        requestManager.sendEmailedRequest(url: requestManager.viewedURL, completionSuccses: { [ weak self ] results in
+        requestManager.sendEmailedRequest(url: requestManager.viewedURL, completionSuccses: { [weak self]  article  in
             guard let self else { return }
-            self.popularViewedArray = results
+            self.articleData = article
             self.mostViewedTableView.reloadData()
         }, completionFailure: nil)
     }
@@ -29,7 +30,7 @@ class MostPopularViewedVC: UIViewController {
     //MARK: - Methods
     private func pushDetailVC(result: ResultData?) {
         
-            guard let controller = self.storyboard?.instantiateViewController(withIdentifier: "DetailVC") as? DetailVC else  { print("Error"); return }
+            guard let controller = self.storyboard?.instantiateViewController(withIdentifier: "DetailVC") as? DetailVC else  { return }
             controller.resultData = result
             controller.flag = true
             self.navigationController?.pushViewController(controller, animated: true)
@@ -47,31 +48,33 @@ extension MostPopularViewedVC: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return popularViewedArray.count
+        guard let results = articleData.results else { return 0 }
+        return results.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: MostViewedTableCell.identifire, for: indexPath) as? MostViewedTableCell else { return UITableViewCell() }
         
-        let row = popularViewedArray[indexPath.row]
-        cell.configureElements(data: row)
+        guard let results = articleData.results else { return UITableViewCell() }
+        cell.configureElements(data: results[indexPath.row])
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let dataRow = popularViewedArray[indexPath.row]
-        pushDetailVC(result: dataRow)
+        guard let results = articleData.results else { return }
+        pushDetailVC(result: results[indexPath.row])
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
         let swipeFavourite = UIContextualAction(style: .destructive, title: "Save") { [weak self] (action, view, completion) in
-            guard let self else { return }
             
-            let row = self.popularViewedArray[indexPath.row]
-            self.coreDataManager.createUser(resultModel: row) {
+            guard let self else { return }
+            guard let results = self.articleData.results else { return }
+            
+            self.coreDataManager.createArticle(resultModel: results[indexPath.row]) {
                 self.coreDataManager.saveContext()
                 completion(true)
             }
