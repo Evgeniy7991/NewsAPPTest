@@ -2,6 +2,7 @@ import UIKit
 import CoreData
 
 class ChosenVC: UIViewController {
+    
     //MARK: - @IBOutlet
     @IBOutlet weak var chosenTableView: UITableView!
     

@@ -1,9 +1,10 @@
 import UIKit
 
 class MostPopularSharedVC: UIViewController {
-    //MARK: - @IBOutlet
     
+    //MARK: - @IBOutlet
     @IBOutlet weak var popularSharedTableView: UITableView!
+    
     //MARK: - let/var
     var popularSharedArray = [ResultData]()
     let requestManager = RequsetManager.shared
