@@ -7,12 +7,7 @@ class MostSharedTableCell: UITableViewCell {
     @IBOutlet weak var mainImageView: UIImageView!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var descriptionView: UIView!
-    
     static let identifire = "MostSharedTableCell"
-    override func awakeFromNib() {
-        super.awakeFromNib()
-  
-    }
     
     func configureElements(data: ResultData?) {
         
