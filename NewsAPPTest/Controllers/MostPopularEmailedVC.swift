@@ -4,10 +4,12 @@ class MostPopularEmailedVC: UIViewController {
     
     // MARK: - @IBOutlet
     @IBOutlet weak var mostPopularTableView: UITableView!
+    
     //MARK: - let/var
     var popularEmailedArray = [ResultData]()
     let requestManager = RequsetManager.shared
     let coreDataManager = CoreDataManager.shared
+    
     //MARK: - UIViewController Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,6 +58,7 @@ extension MostPopularEmailedVC: UITableViewDataSource {
         
         return cell
     }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let dataRow = popularEmailedArray[indexPath.row]

@@ -1,6 +1,7 @@
 import UIKit
 
 class DetailVC: UIViewController {
+    
     //MARK: - @IBOutlet
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var byLineLabel: UILabel!
@@ -33,7 +34,6 @@ class DetailVC: UIViewController {
             configureChosenLabels()
             configureChosenImageView()
         }
-        print(flag)
     }
     
     //MARK: - Methods
