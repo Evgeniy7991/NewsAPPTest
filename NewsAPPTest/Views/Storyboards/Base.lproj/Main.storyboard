@@ -442,7 +442,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="uk2-nw-WX8">
-                                                            <rect key="frame" x="8.6666666666666643" y="4.6666666666666714" width="110.66666666666669" height="110.66666666666667"/>
+                                                            <rect key="frame" x="8.6666666666666572" y="4.6666666666666714" width="110.66666666666669" height="110.66666666666667"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" secondItem="uk2-nw-WX8" secondAttribute="height" id="3Fi-7e-yiG"/>
                                                             </constraints>
@@ -661,7 +661,7 @@
                                             <constraint firstItem="a8x-XC-Vgz" firstAttribute="height" secondItem="QaN-zK-9YH" secondAttribute="height" id="9TO-3X-Pfx"/>
                                             <constraint firstAttribute="trailing" secondItem="eZG-p0-SES" secondAttribute="trailing" constant="10" id="AAL-Dy-b7v"/>
                                             <constraint firstItem="THg-6W-9Nm" firstAttribute="leading" secondItem="0dC-VE-T8p" secondAttribute="leading" id="KVr-in-Hmp"/>
-                                            <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="a8x-XC-Vgz" secondAttribute="trailing" constant="10" id="MIP-rN-m1b"/>
+                                            <constraint firstAttribute="trailing" secondItem="a8x-XC-Vgz" secondAttribute="trailing" constant="10" id="MIP-rN-m1b"/>
                                             <constraint firstItem="a8x-XC-Vgz" firstAttribute="top" secondItem="THg-6W-9Nm" secondAttribute="bottom" id="R4N-f0-HU3"/>
                                             <constraint firstItem="eZG-p0-SES" firstAttribute="leading" secondItem="0dC-VE-T8p" secondAttribute="leading" constant="10" id="TCr-eT-Bap"/>
                                             <constraint firstItem="eZG-p0-SES" firstAttribute="top" secondItem="QaN-zK-9YH" secondAttribute="bottom" constant="20" id="a8G-XY-0DI"/>
