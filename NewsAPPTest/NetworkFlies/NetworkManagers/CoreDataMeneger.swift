@@ -74,6 +74,7 @@ class CoreDataManager {
         article.publeshedData = resultModel.publishedDate
         article.updateData = resultModel.updated
         article.section = resultModel.section
+        article.abstract = resultModel.abstract
         
         guard let media = resultModel.media else { return }
         
